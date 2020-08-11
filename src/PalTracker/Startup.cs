@@ -38,6 +38,8 @@ namespace PalTracker
             var instanceCount = Configuration.GetValue<string>("CF_INSTANCE_INDEX");
             var instanceAdd = Configuration.GetValue<string>("CF_INSTANCE_ADDR");
             services.AddSingleton(cI => new CloudFoundryInfo(port,memLimit,instanceCount, instanceAdd));
+            services.AddSingleton<ITimeEntryRepository, InMemoryTimeEntryRepository>();
+       
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
