@@ -24,7 +24,7 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-         "WELCOME_MESSAGE": "Default welcome message",
+         "WELCOME_MESSAGE": "Default welcome message (coming from launchSettings)",
          "PORT": "1223",
          "MEMORY_LIMIT": "512M",
          "CF_INSTANCE_INDEX": "1",
