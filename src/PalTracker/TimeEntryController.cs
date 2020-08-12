@@ -6,10 +6,12 @@ namespace PalTracker
     public class TimeEntryController : ControllerBase
     {
         private readonly ITimeEntryRepository _repository;
+        private readonly IOperationCounter<TimeEntry> _operationCounter;
 
-        public TimeEntryController(ITimeEntryRepository repository)
+        public TimeEntryController(ITimeEntryRepository repository, IOperationCounter<TimeEntry> operationCounter)
         {
             _repository = repository;
+            _operationCounter = operationCounter;
         }
 
         [HttpPost]
