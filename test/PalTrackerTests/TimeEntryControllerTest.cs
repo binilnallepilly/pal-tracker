@@ -37,7 +37,7 @@ namespace PalTrackerTests
 
             Assert.Equal(expected, typedResponse.Value);
             Assert.Equal(200, typedResponse.StatusCode);
-            _operationCounter.Verify(oc => oc.Increment(TrackedOperation.Read), Never);
+            _operationCounter.Verify(oc => oc.Increment(TrackedOperation.Read), Once);
         }
 
         [Fact]

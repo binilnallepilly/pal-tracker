@@ -17,6 +17,7 @@ namespace PalTracker
         [HttpPost]
         public IActionResult Create([FromBody] TimeEntry timeEntry)
         {
+              _operationCounter.Increment(TrackedOperation.Create);
             var createdTimeEntry = _repository.Create(timeEntry);
 
             return CreatedAtRoute("GetTimeEntry", new {id = createdTimeEntry.Id}, createdTimeEntry);
@@ -25,23 +26,27 @@ namespace PalTracker
         [HttpGet("{id}", Name = "GetTimeEntry")]
         public IActionResult Read(long id)
         {
+            _operationCounter.Increment(TrackedOperation.Read);
             return _repository.Contains(id) ? (IActionResult) Ok(_repository.Find(id)) : NotFound();
         }
         [HttpGet]
         public IActionResult List()
-        {
+        {  _operationCounter.Increment(TrackedOperation.List);
             return Ok(_repository.List());
         }
 
         [HttpPut("{id}")]
         public IActionResult Update(long id, [FromBody] TimeEntry timeEntry)
-        {
+        { 
+             _operationCounter.Increment(TrackedOperation.Update);
+
             return _repository.Contains(id) ? (IActionResult) Ok(_repository.Update(id, timeEntry)) : NotFound();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
+              _operationCounter.Increment(TrackedOperation.Delete);
             if (!_repository.Contains(id))
             {
                 return NotFound();
